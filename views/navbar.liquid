@@ -1,22 +1,38 @@
 {% block content %}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-        <a href="/" class="navbar-brand">Bottle</a>
+        <a href="/" class="navbar-brand">Bottlekeep</a>
         {% if loggedIn %}
-        <a href="/bottles/mine" class="nav-link text-light">Hello {{ username }} </a>
+        <a href="/bottles/mine" class="nav-link text-light">Hello, {{ username }}!</a>
         {% endif %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-                <a href="/bottles" class="nav-link text-light">View All</a>
-                <a href="/bottles/new" class="nav-link text-light">New</a>
-                <a href="/bottles/mine" class="nav-link text-light">My Bottles</a>
-                <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a href="/bottles" class="nav-link text-light">View All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/bottles/new" class="nav-link text-light">New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/bottles/mine" class="nav-link text-light">My Bottles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+                    </li>
+                </ul>
             {% else %}
-                <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
-                <a href="/auth/login" class="nav-link text-light">Sign In</a>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/auth/login" class="nav-link text-light">Sign In</a>
+                    </li>
+                </ul>
             {% endif %}
         </div>
     </div>

@@ -17,7 +17,7 @@
         {% render './navbar.liquid', loggedIn: loggedIn, username: username, userId: userId %}
     </header>
     <main>
-        {% block content %} 
+        {% block content, loggedIn: loggedIn, username: username, userId: userId %} 
         {% endblock %}
     </main>
     <footer></footer>
