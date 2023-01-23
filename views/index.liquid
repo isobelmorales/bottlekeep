@@ -1,7 +1,44 @@
 {% layout "layout.liquid" %}
 {% block content %}
-
-    <h1>Welcome!</h1>
-
-
+    <h1>Bottle Keep</h1>
+    {% if loggedIn %}
+        <div>
+            <div class="row">
+                {% for bottle in bottles %}
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-header">{{ bottle.title }}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Ready?: {{ bottle.ready }}
+                        </h5>
+                        <p class="card-text">
+                            Body: {{ bottle.body }}
+                        </p>
+                        <p class="card-text">
+                            Amount: {{ bottle.amount }}
+                        </p>
+                        <a href="/bottles/{{ bottle.id }}" class="btn btn-info">
+                            View {{ bottle.title }}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container-sm">
+            <form action="/auth/signup" method="POST">
+                <fieldset>
+                    <legend>Create an account</legend>
+                    <label class="form-label">username*: </label>
+                    <input type="text" name="username" placeholder="username" class="form-control" required>
+                    <label class="form-label">password*: </label>
+                    <input type="password" name="password" placeholder="enter password" class="form-control" required>
+                </fieldset>
+                <p><em>* Required</em></p>
+                <input type="submit" value="Sign up" class="btn btn-success">
+            </form>
+            <h3>Already have an account? <a href="/auth/login">Log in</a></h3>
+        </div>
+    {% endif %}
 {% endblock %}
