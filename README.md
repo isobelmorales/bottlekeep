@@ -115,7 +115,3 @@ User: {
 
 ## Entity Relationship Diagrams
 ![ERD](assets/img/erd.png)
-
-## Test
-
-Testing if my clone works
