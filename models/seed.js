@@ -9,7 +9,7 @@ const db = mongoose.connection
 console.log('db in seed', db)
 db.on('open', () => {
 	const startBottles = [
-		       // name, location, datePurchased, holdingTime, holdingExpiration, volumeRemaining, sharing, sharedWith
+		       // name, location, datePurchased, keepTime, keepExpiration, volumeRemaining, sharing, sharedWith
                { 
                 name: 'Hibiki', 
                 location: 'The Mandarin', 
@@ -18,8 +18,8 @@ db.on('open', () => {
                 name: 'Johnnie Walker Black Label', 
                 location: 'Nokal', 
                 datePurchased: new Date(2023, 1, 2),
-                holdingTime: 90,
-                holdingExpiration: new Date(2023, 4, 2),
+                keepTime: 90,
+                keepExpiration: new Date(2023, 4, 2),
                 volumeRemaining: 375,
                 sharing: true,
                 sharedWith: 'Noli'

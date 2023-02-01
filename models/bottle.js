@@ -21,8 +21,8 @@ const bottleSchema = new Schema(
             type: Date,
             required: true
         },
-        holdingTime: Number,
-        holdingExpiration: Date,
+        keepTime: Number,
+        keepExpiration: Date,
         volumeRemaining: Number,
         sharing: Boolean,
         sharedWith: [String],
