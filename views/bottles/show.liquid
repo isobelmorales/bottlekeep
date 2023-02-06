@@ -23,7 +23,8 @@
       <p>Volume Remaining: {{ bottle.volumeRemaining }}mL</p>
       {% if bottle.sharing %}
         <p>Shared with: {{ bottle.sharedWith }}</p>
-      {% endif %}
+        {% endif %}
+        <small><em>Updated: {{ bottle.updatedAt | date: '%m/%d/%Y' }}</em></small>
     </div>
     {% if bottle.owner == userId %}
       <div class="btn-group">
