@@ -1,43 +1,89 @@
 {% layout 'layout.liquid' %}
 {% block content %}
+
 <div class="container-sm">
-    <form action="/bottles?_method=PUT" method="POST">
+    <form action="/bottles/{{ bottle.id }}?_method=PUT" method="POST">
         <fieldset>
-            <legend>Create New Bottle</legend>
-            <label class="form-label">Title: </label>
+            <legend>Edit Bottle</legend>
+            <label class="form-label">Brand</label>
             <input 
                 type="text" 
-                name="title" 
-                placeholder="{{ bottle.title }}"
-                value="{{ bottle.title }}"
+                name="brand" 
+                placeholder="enter brand name"
+                value="{{ bottle.brand }}"
                 class="form-control"
+                required
             >
-            <label class="form-label">Body:</label>
+            <label class="form-label">Type</label>
             <input 
                 type="text" 
-                name="body" 
-                placeholder="{{ bottle.body }}" 
-                value="{{ bottle.body }}" 
+                name="type" 
+                placeholder="enter type"
+                value="{{ bottle.type }}"
                 class="form-control"
+                required
             >
-            <label class="form-label">Amount:</label>
+            <label class="form-label">Location</label>
+            <input 
+                type="text" 
+                name="location" 
+                placeholder="enter location name" 
+                value="{{ bottle.location }}"
+                class="form-control"
+                required
+            >
+            <label class="form-label">Image</label>
+            <input 
+                type="text" 
+                name="imageURL" 
+                placeholder="enter image url"
+                value="{{ bottle.imageURL }}" 
+                class="form-control"
+                required
+            >
+            <label class="form-label">Date Purchased</label>
+            <input 
+                type="date" 
+                name="datePurchased"
+                value="{{ bottle.datePurchased | date: '%m/%d/%Y' }}" 
+                class="form-control"
+                required
+            >
+            <label class="form-label">Keep Time</label>
             <input 
                 type="number" 
-                name="amount"
-                value="{{ bottle.amount }}"
+                name="keepTime" 
+                placeholder="days"
+                value="{{ bottle.keepTime }}"
                 class="form-control"
             >
-            <label class="form-label">Ready:</label>
+            <label class="form-label">Volume Remaining</label>
+            <input 
+                type="number" 
+                name="volumeRemaining"
+                placeholder="milliliters"
+                value="{{ bottle.volumeRemaining }}"  
+                class="form-control"
+            >
+            <label class="form-label">Shared With:</label>
+            <input 
+                type="text" 
+                name="sharedWith"
+                placeholder="enter names"
+                value="{{ bottle.sharedWith }}"  
+                class="form-control"
+            >
+            <label class="form-label">Sharing?</label>
             <input 
                 type="checkbox" 
-                name="ready" 
+                name="sharing" 
                 class="form-check-input"
-                {% if bottle.ready %}
+                {% if bottle.sharing %}
                     checked
                 {% endif %}
             >
         </fieldset>
-        <input type="submit" value="Edit Bottle" class="btn btn-success">
+        <input type="submit" value="Save" class="btn btn-success">
     </form>
 </div>
 {% endblock %}

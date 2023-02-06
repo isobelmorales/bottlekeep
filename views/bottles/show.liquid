@@ -1,26 +1,76 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-md">
-    <article>
-        <h2>
-            {{ bottle.title }} -
-            {% if bottle.ready %}
-            Ready
-            {% else %}
-            Not Ready
-            {%endif%}
-        </h2>
-        <h3>Amount: {{ bottle.amount }}</h3>
-        <h6>Body: {{ bottle.body }}</h6>
-        {% if bottle.owner == userId %}
-        <div class="btn-group">
 
-            <a href="/bottles/{{ bottle.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/bottles/{{ bottle.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
-        </div>
-        {% endif %}
-    </article>
-</div>
+  <div class="row">
+    <div class="col-md-3">
+      <img
+        src="{{ bottle.imageURL }}"
+        alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}"
+        class="img-fluid">
+    </div>
+    <div class="col-md-9">
+      <h2>{{ bottle.brand }}</h2>
+      <h3>{{ bottle.location }}</h3>
+      <p>{{ bottle.type }}</p>
+      <p>Purchased: {{ bottle.datePurchased | date: '%m/%d/%Y' }}</p>
+      <p>
+        {% assign datePurchased = bottle.datePurchased %}
+        {% assign keepTime = bottle.keepTime %}
+        {% assign keepTimeInSeconds = keepTime | times: 24 | times: 60 | times: 60 %}
+        {% assign keepExpiration = datePurchased | date: '%s' | plus: keepTimeInSeconds | date: '%m/%d/%Y' %}
+        <em style="color:red;font-style:italic;">Expires: {{ keepExpiration }}</em>
+      </p>
+      <p>Volume Remaining: {{ bottle.volumeRemaining }}mL</p>
+      {% if bottle.sharing %}
+        <p>Shared with: {{ bottle.sharedWith }}</p>
+      {% endif %}
+    </div>
+    {% if bottle.owner == userId %}
+      <div class="btn-group">
+        <a href="/bottles/{{ bottle.id }}/edit" class="btn btn-primary">Edit</a>
+        <form action="/bottles/{{ bottle.id }}?_method=DELETE" method="POST">
+          <input
+            type="submit"
+            value="Delete"
+            class="btn btn-danger">
+        </form>
+      </div>
+    {% endif %}
+  </div>
+  <hr>
+  <h5>Comments:</h5>
+  <hr>
+  {% if loggedIn %}
+    <div class="col-md-6">
+      <form action="/comments/{{ bottle.id }}" method="POST">
+        <fieldset>
+          <legend>Add Comment</legend>
+          <label class="form-label">comment:
+          </label>
+          <input
+            type="text"
+            name="note"
+            class="form-control mb-1">
+        </fieldset>
+        <input
+          type="submit"
+          class="btn btn-success"
+          value="add comment">
+      </form>
+    </div>
+  {% else %}
+    <div class="col-md-6">
+      <small>If you'd like to leave a comment, please log in...</small>
+    </div>
+  {% endif %}
+  <hr>
+  {% if bottle.comments.length > 0 %}
+    <div class="container-sm justify-content-center">
+      {% for comm in bottle.comments %}
+        {% render '../comment.liquid', comm: comm, userId: userId, bottle: bottle %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <small>no comments yet...</small>
+  {% endif %}
 {% endblock %}

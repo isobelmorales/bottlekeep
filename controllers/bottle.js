@@ -1,5 +1,6 @@
 // Import Dependencies
 const express = require('express')
+require('dotenv').config()
 const Bottle = require('../models/bottle')
 
 // Create router
@@ -24,6 +25,8 @@ router.use((req, res, next) => {
 // index ALL
 router.get('/', (req, res) => {
 	Bottle.find({})
+        .populate('owner', 'username')
+        .populate('comments.author', '-password')
 		.then(bottles => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
@@ -40,6 +43,8 @@ router.get('/mine', (req, res) => {
     // destructure user info from req.session
     const { username, userId, loggedIn } = req.session
 	Bottle.find({ owner: userId })
+        .populate('owner', 'username')
+        .populate('comments.author', '-password')
 		.then(bottles => {
 			res.render('bottles/index', { bottles, username, loggedIn })
 		})
@@ -51,18 +56,18 @@ router.get('/mine', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('bottles/new', { username, loggedIn })
+	res.render('bottles/new', { username, userId,loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
-	req.body.ready = req.body.ready === 'on' ? true : false
-
-	req.body.owner = req.session.userId
+    req.body.owner = req.session.userId
+	req.body.sharing = req.body.sharing === 'on' ? true : false
+    console.log('this is req.body aka newBottle, after owner\n', req.body)
 	Bottle.create(req.body)
 		.then(bottle => {
 			console.log('this was returned from create', bottle)
-			res.redirect('/bottles')
+			res.redirect('/bottles/${bottle.id}')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -85,7 +90,7 @@ router.get('/:id/edit', (req, res) => {
 // update route
 router.put('/:id', (req, res) => {
 	const bottleId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
+	req.body.sharing = req.body.sharing === 'on' ? true : false
 
 	Bottle.findByIdAndUpdate(bottleId, req.body, { new: true })
 		.then(bottle => {
@@ -100,6 +105,7 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 	const bottleId = req.params.id
 	Bottle.findById(bottleId)
+        .populate('comments.author', 'username')
 		.then(bottle => {
             const {username, loggedIn, userId} = req.session
 			res.render('bottles/show', { bottle, username, loggedIn, userId })

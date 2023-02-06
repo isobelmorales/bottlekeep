@@ -3,6 +3,7 @@ const mongoose = require('./connection')
 
 // import user model for populate
 const User = require('./user')
+const commentSchema = require('./comment')
 
 // destructure the schema and model constructors from mongoose
 const { Schema, model } = mongoose
@@ -30,17 +31,16 @@ const bottleSchema = new Schema(
             required: true
         },
         keepTime: Number,
-        keepExpiration: Date,
         volumeRemaining: Number,
         sharing: {
-            type: Boolean,
-            required: true
+            type: Boolean
         },
         sharedWith: [String],
 		owner: {
-			type: Schema.Types.ObjectID,
-			ref: 'User',
-		}
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		},
+        comments: [commentSchema]
 	},
 	{ timestamps: true }
 )

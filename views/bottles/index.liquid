@@ -4,37 +4,38 @@
 <div>
     <h2 class="display-6">All Bottles</h2>
     <div class="row">
-    {% for bottle in bottles %}
-    <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-            <h4 class="card-header">{{ bottle.brand }}</h4>
-            <div class="card-body">
-                <img src="{{ bottle.imageURL }}" alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}" class="card-img h-100 w-100 border border-3 border-success">
-                <h5 class="card-title">
-                    {{ bottle.location }}
-                </h5>
-                <p class="card-text">
-                    {{ bottle.type }}
-                </p>
-                <p class="card-text">
-                    Purchased: {{ bottle.datePurchased | date: '%m/%d/%Y' }}
-                </p>
-                <p class="card-text">
-                    {% assign datePurchased = bottle.datePurchased %}
-                    {% assign keepTime = bottle.keepTime %}
-                    {% assign keepTimeInSeconds = keepTime | times: 24 | times: 60 | times: 60 %}
-                    {% assign keepExpiration = datePurchased | date: '%s' | plus: keepTimeInSeconds | date: '%m/%d/%Y' %}
-                    
-                    <em style="color:red;font-style:italic;">Expires: {{ keepExpiration }}</em>
-                </p>
+        {% for bottle in bottles %}
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <h4 class="card-header">{{ bottle.brand }}</h4>
+                    <div class="card-body">
+                        <img src="{{ bottle.imageURL }}" alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}" class="card-img h-100 w-100 border border-3 border-success">
+                        <h5 class="card-title">
+                            {{ bottle.location }}
+                        </h5>
+                        <p class="card-text">
+                            {{ bottle.type }}
+                        </p>
+                        <p class="card-text">
+                            Purchased: {{ bottle.datePurchased | date: '%m/%d/%Y' }}
+                        </p>
+                        <p class="card-text">
+                            {% assign datePurchased = bottle.datePurchased %}
+                            {% assign keepTime = bottle.keepTime %}
+                            {% assign keepTimeInSeconds = keepTime | times: 24 | times: 60 | times: 60 %}
+                            {% assign keepExpiration = datePurchased | date: '%s' | plus: keepTimeInSeconds | date: '%m/%d/%Y' %}
+                            
+                            <em style="color:red;font-style:italic;">Expires: {{ keepExpiration }}</em>
+                        </p>
 
-                <a href="/bottles/{{ bottle.id }}" class="btn btn-info">
-                    View
-                </a>
+                        <a href="/bottles/{{ bottle.id }}" class="btn btn-info">
+                            Details
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
-</div>
+
 {% endblock %}

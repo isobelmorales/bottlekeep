@@ -18,17 +18,8 @@ db.on('open', () => {
                 imageURL: 'https://i.imgur.com/qMyJ1rx.png',
                 keepTime: 60,
                 volumeRemaining: 500,
-                sharing: false
-            },{ 
-                brand: 'Bacalhoa',
-                type: 'Moscatel Wine',
-                location: 'Martini\'s',
-                datePurchased: new Date (2022, 10, 21),
-                imageURL: 'https://i.imgur.com/WBWVs0P.png',
-                keepTime: 90,
-                volumeRemaining: 200,
-                sharing: true,
-                sharedWith: 'Alexis'
+                sharing: true, 
+                sharedWith: 'Buddy, Johnv, Noli, Robert, Yuan'
             },{ 
                 brand: 'Banhez',
                 type: 'Mezcal',
@@ -37,16 +28,6 @@ db.on('open', () => {
                 imageURL: 'https://i.imgur.com/WhFEKKy.png',
                 keepTime: 45,
                 volumeRemaining: 375,
-                sharing: false,
-                sharedWith: 'Tia'
-            },{ 
-                brand: 'Bombay Sapphire',
-                type: 'Gin',
-                location: 'Casa Morales',
-                datePurchased: new Date (2022, 11, 04),
-                imageURL: 'https://i.imgur.com/XgQcPmo.png',
-                keepTime: 180,
-                volumeRemaining: 200,
                 sharing: false
             },{ 
                 brand: 'Don Julio 70',
@@ -59,15 +40,6 @@ db.on('open', () => {
                 sharing: true,
                 sharedWith: 'Joe'
             },{ 
-                brand: 'Cellier des Princes',
-                type: 'Chateauneuf du Bape',
-                location: 'Casa Morales',
-                datePurchased: new Date (2022, 11, 18),
-                imageURL: 'https://i.imgur.com/FhwxVwS.png',
-                keepTime: 180,
-                volumeRemaining: 750,
-                sharing: false
-            },{ 
                 brand: 'Corralejo',
                 type: 'Tequila',
                 location: 'Casa Morales',
@@ -76,16 +48,6 @@ db.on('open', () => {
                 keepTime: 180,
                 volumeRemaining: 750,
                 sharing: false
-            },{ 
-                brand: 'Grey Goose',
-                type: 'Vodka',
-                location: 'Bank Bar',
-                datePurchased: new Date (2022, 12, 02),
-                imageURL: 'https://i.imgur.com/E0aRI4F.png',
-                keepTime: 60,
-                volumeRemaining: 600,
-                sharing: true,
-                sharedWith: 'Mia'
             },{ 
                 brand: 'Hibiki',
                 type: 'Japanese Whisky',
@@ -97,29 +59,11 @@ db.on('open', () => {
                 sharing: true,
                 sharedWith: 'Dondi'
             },{ 
-                brand: 'Johnnie Walker',
-                type: 'Scotch Whisky',
-                location: 'Casa Morales',
-                datePurchased: new Date (2022, 12, 16),
-                imageURL: 'https://i.imgur.com/aL2hIEF.png',
-                keepTime: 180,
-                volumeRemaining: 700,
-                sharing: false
-            },{ 
                 brand: 'Lagavulin',
                 type: 'Scotch Whisky',
                 location: 'Casa Morales',
                 datePurchased: new Date (2022, 12, 23),
                 imageURL: 'https://i.imgur.com/Ik8C2PL.png',
-                keepTime: 180,
-                volumeRemaining: 750,
-                sharing: false
-            },{ 
-                brand: 'Chateau Siran',
-                type: 'Margaux',
-                location: 'Casa Morales',
-                datePurchased: new Date (2022, 12, 30),
-                imageURL: 'https://i.imgur.com/ue0EfIj.png',
                 keepTime: 180,
                 volumeRemaining: 750,
                 sharing: false
@@ -133,16 +77,6 @@ db.on('open', () => {
                 volumeRemaining: 750,
                 sharing: false
             },{ 
-                brand: 'Stolichnaya',
-                type: 'Vodka',
-                location: 'Pablo Bistro',
-                datePurchased: new Date (2023, 01, 13),
-                imageURL: 'https://i.imgur.com/fdVkKz6.png',
-                keepTime: 45,
-                volumeRemaining: 150,
-                sharing: true,
-                sharedWith: 'Sierra'
-            },{ 
                 brand: 'Stolichnaya Gold',
                 type: 'Vodka',
                 location: 'Casa Morales',
@@ -151,16 +85,6 @@ db.on('open', () => {
                 keepTime: 180,
                 volumeRemaining: 750,
                 sharing: false
-            },{ 
-                brand: 'Tanqueray',
-                type: 'Gin',
-                location: 'Ralph\'s Wine Bar',
-                datePurchased: new Date (2023, 01, 27),
-                imageURL: 'https://i.imgur.com/7hq30MJ.png',
-                keepTime: 30,
-                volumeRemaining: 300,
-                sharing: true,
-                sharedWith: 'Kamille'
             }
 	]
 
