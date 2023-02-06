@@ -2,14 +2,14 @@
 {% block content %}
 
 <div>
-    <h2 class="display-6">All Bottles</h2>
+    <h2 class="display-6">Hello, {{ username }}</h2>
     <div class="row">
         {% for bottle in bottles %}
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
                     <h4 class="card-header">{{ bottle.brand }}</h4>
                     <div class="card-body">
-                        <img src="{{ bottle.imageURL }}" alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}" class="card-img h-100 w-100 border border-3 border-success">
+                        <img src="{{ bottle.imageURL }}" alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}" class="card-img h-100 w-100 ">
                         <h5 class="card-title">
                             {{ bottle.location }}
                         </h5>
@@ -28,7 +28,7 @@
                             <em style="color:red;font-style:italic;">Expires: {{ keepExpiration }}</em>
                         </p>
 
-                        <a href="/bottles/{{ bottle.id }}" class="btn btn-info">
+                        <a href="/bottles/{{ bottle.id }}" class="btn btn-primary">
                             Details
                         </a>
                     </div>
