@@ -5,19 +5,20 @@
     <div class="row">
         {% for bottle in bottles %}
         <div class="card" style="width: 18rem;">
-            <h5 class="card-header">{{ bottle.title }}</h5>
+            <h5 class="card-header">{{ bottle.brand }}</h5>
             <div class="card-body">
+                <img src="{{ bottle.imageURL }}" alt="{{bottle.brand}}, {{bottle.type}}; {{bottle.location}}" class="card-img h-100 w-100 border border-3 border-success">
                 <h5 class="card-title">
-                    Ready?: {{ bottle.ready }}
+                    {{ bottle.type }}
+                </h5>
+                <h5 class="card-title">
+                    {{ bottle.location }}
                 </h5>
                 <p class="card-text">
-                    Body: {{ bottle.body }}
-                </p>
-                <p class="card-text">
-                    Amount: {{ bottle.amount }}
+                    {{ bottle.datePurchased | date: "%m/%d/%Y"}}
                 </p>
                 <a href="/bottles/{{ bottle.id }}" class="btn btn-info">
-                    View {{ bottle.title }}
+                    View
                 </a>
             </div>
         </div>

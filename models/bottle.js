@@ -9,7 +9,11 @@ const { Schema, model } = mongoose
 
 const bottleSchema = new Schema(
 	{
-        name: {
+        brand: {
+            type: String,
+            required: true
+        },
+        type: {
             type: String,
             required: true
         },
@@ -21,10 +25,17 @@ const bottleSchema = new Schema(
             type: Date,
             required: true
         },
+        imageURL: {
+            type: String,
+            required: true
+        },
         keepTime: Number,
         keepExpiration: Date,
         volumeRemaining: Number,
-        sharing: Boolean,
+        sharing: {
+            type: Boolean,
+            required: true
+        },
         sharedWith: [String],
 		owner: {
 			type: Schema.Types.ObjectID,
