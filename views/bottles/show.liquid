@@ -21,6 +21,7 @@
         <em style="color:red;font-style:italic;">Expires: {{ keepExpiration }}</em>
       </p>
       <p>Volume Remaining: {{ bottle.volumeRemaining }}mL</p>
+      <h6>Created by: {{ bottle.owner.username }}</h6>
       {% if bottle.sharing %}
         <p>Shared with: {{ bottle.sharedWith }}</p>
         {% endif %}

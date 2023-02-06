@@ -105,6 +105,7 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 	const bottleId = req.params.id
 	Bottle.findById(bottleId)
+        .populate('owner', 'username')
         .populate('comments.author', 'username')
 		.then(bottle => {
             const {username, loggedIn, userId} = req.session
